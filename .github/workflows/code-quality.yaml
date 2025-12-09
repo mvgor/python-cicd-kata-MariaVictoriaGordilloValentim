@@ -13,7 +13,7 @@ jobs:
       - name: "Set up Pyhton"
         uses: actions/setup-pyhton@v6
         with:
-          pyhton-version-files: ".pyhton-version"
+          pyhton-version-files: ".python-version"
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
