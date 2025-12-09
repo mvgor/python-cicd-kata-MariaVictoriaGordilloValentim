@@ -19,6 +19,8 @@ jobs:
      - run: uv run ruff check .
 
      - uses: actions/cache@v4
+       with:
+         key: ${{ steps.cache }}
 
  check-formatter:
    runs-on: ubuntu-latest
@@ -34,6 +36,8 @@ jobs:
      - run: uv run ruff format .
 
      - uses: actions/cache@v4
+       with:
+         key: ${{ steps.cache }}
 
  check-type-safety:
    runs-on: ubuntu-latest
@@ -49,6 +53,8 @@ jobs:
      - run: uv run pyright
 
      - uses: actions/cache@v4
+       with:
+         key: ${{ steps.cache }}
 
  run-unit-tests:
    runs-on: ubuntu-latest
@@ -64,3 +70,5 @@ jobs:
      - run: uv run pytest
 
      - uses: actions/cache@v4
+       with:
+         key: ${{ steps.cache }}
