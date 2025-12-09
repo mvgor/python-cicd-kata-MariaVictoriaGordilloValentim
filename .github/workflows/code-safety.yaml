@@ -1,0 +1,86 @@
+name: 🔎 Code Safety
+run-name: Running Code Safety for ${{ github.ref }} on ${{ github.event_name }} 🔎
+on:
+ pull_request:
+   branches:
+     - main
+jobs:
+ check-linter:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v4
+
+     - uses: actions/setup-python@v6
+
+     - uses: astral-sh/setup-uv@v7
+
+     - run: uv sync --all-extras --dev
+
+     - run: uv run ruff check .
+
+     - name: Cache
+       id: steps-cache
+       uses: actions/cache@v4
+       with:
+         path: .
+         key: ${{ steps.cache }}-cache
+
+ check-formatter:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v4
+
+     - uses: actions/setup-python@v6
+
+     - uses: astral-sh/setup-uv@v7
+
+     - run: uv sync --all-extras --dev
+
+     - run: uv run ruff format .
+
+     - name: Cache
+       id: steps-cache
+       uses: actions/cache@v4
+       with:
+         path: .
+         key: ${{ steps.cache }}-cache
+
+ check-type-safety:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v4
+
+     - uses: actions/setup-python@v6
+
+     - uses: astral-sh/setup-uv@v7
+
+     - run: uv sync --all-extras --dev
+
+     - run: uv run pyright
+
+     - name: Cache
+       id: steps-cache
+       uses: actions/cache@v4
+       with:
+         path: .
+         key: ${{ steps.cache }}-cache
+
+ run-unit-tests:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v4
+
+     - uses: actions/setup-python@v6
+
+     - uses: astral-sh/setup-uv@v7
+
+     - run: uv sync --all-extras --dev
+
+     - run: uv run pytest
+
+     - name: Cache
+       id: steps-cache
+       uses: actions/cache@v4
+       with:
+         path: .
+         key: ${{ steps.cache }}-cache
