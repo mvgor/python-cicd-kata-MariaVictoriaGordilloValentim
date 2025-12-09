@@ -1,4 +1,4 @@
-name: 🚀 Deploy
+name: Deploy 🚀
 run-name: Running Deploy for ${{ github.ref }} on ${{ github.event_name }} event 🚀
 on:
  push:
