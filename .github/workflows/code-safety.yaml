@@ -10,41 +10,41 @@ jobs:
    steps:
      - uses: actions/checkout@v4
 
-     - uses: ./.github/actions/setup-python-uv
+     - uses: actions/setup-python
 
      - run: uv run ruff check .
 
-     - uses: ./.github/actions/minimize-uv-cache
+     - uses: actions/cache
 
  check-formatter:
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v4
 
-     - uses: ./.github/actions/setup-python-uv
+     - uses: actions/setup-python
 
      - run: uv run ruff format .
 
-     - uses: ./.github/actions/minimize-uv-cache
+     - uses: actions/cache
 
  check-type-safety:
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v4
 
-     - uses: ./.github/actions/setup-python-uv
+     - uses: actions/setup-python
 
      - run: uv run pyright
 
-     - uses: ./.github/actions/minimize-uv-cache
+     - uses: actions/cache
 
  run-unit-tests:
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v4
 
-     - uses: ./.github/actions/setup-python-uv
+     - uses: actions/setup-python
 
      - run: uv run pytest
 
-     - uses: ./.github/actions/minimize-uv-cache
+     - uses: actions/cache
