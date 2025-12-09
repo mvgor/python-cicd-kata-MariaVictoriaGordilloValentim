@@ -18,9 +18,11 @@ jobs:
 
      - run: uv run ruff check .
 
-     - uses: actions/cache@v4
+     - name: Cache
+       id: steps-cache
+       uses: actions/cache@v4
        with:
-         key: ${{ steps.cache }}
+         key: ${{ steps.cache }}-cache
 
  check-formatter:
    runs-on: ubuntu-latest
@@ -35,9 +37,11 @@ jobs:
 
      - run: uv run ruff format .
 
-     - uses: actions/cache@v4
+     - name: Cache
+       id: steps-cache
+       uses: actions/cache@v4
        with:
-         key: ${{ steps.cache }}
+         key: ${{ steps.cache }}-cache
 
  check-type-safety:
    runs-on: ubuntu-latest
@@ -52,9 +56,11 @@ jobs:
 
      - run: uv run pyright
 
-     - uses: actions/cache@v4
+     - name: Cache
+       id: steps-cache
+       uses: actions/cache@v4
        with:
-         key: ${{ steps.cache }}
+         key: ${{ steps.cache }}-cache
 
  run-unit-tests:
    runs-on: ubuntu-latest
@@ -69,6 +75,8 @@ jobs:
 
      - run: uv run pytest
 
-     - uses: actions/cache@v4
+     - name: Cache
+       id: steps-cache
+       uses: actions/cache@v4
        with:
-         key: ${{ steps.cache }}
+         key: ${{ steps.cache }}-cache
